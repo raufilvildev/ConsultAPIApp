@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IUser } from '../../interfaces/iuser.interface';
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
