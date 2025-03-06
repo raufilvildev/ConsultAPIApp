@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UsersService {
 
   private httpClient = inject(HttpClient);
-  private baseUrl = "https://peticiones.online/api/users";
+  private baseUrl = "https://peticiones.online/api/users/";
   router = inject(Router);
   
 
