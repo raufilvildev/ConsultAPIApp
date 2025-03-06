@@ -7,35 +7,35 @@
     <form class="p-4" [formGroup]="form" (ngSubmit)="updateOrCreateUser(form.value)">
         <div class="mb-3">
             <label for="first_name" class="form-label">Nombre del usuario</label>
-            <input type="text" class="form-control" formControlName="first_name" id="first_name" [style.color]="(!newUserForm) ? 'red' : 'black'">
+            <input type="text" class="form-control" formControlName="first_name" id="first_name" [style.color]="(!newUserForm) ? 'cornflowerblue' : 'black'">
             @if (form.controls['first_name'].invalid) {
                 <p [style.color]="'red'">El campo 'Nombre del usuario' es obligatorio.</p>
             }
         </div>
         <div class="mb-3">
             <label for="last_name" class="form-label">Apellidos del usuario</label>
-            <input type="text" class="form-control" formControlName="last_name" id="last_name" [style.color]="(!newUserForm) ? 'red' : 'black'">
+            <input type="text" class="form-control" formControlName="last_name" id="last_name" [style.color]="(!newUserForm) ? 'cornflowerblue' : 'black'">
             @if (form.controls['last_name'].invalid) {
                 <p [style.color]="'red'">El campo 'Apellidos del usuario' es obligatorio.</p>
             }
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Usuario</label>
-            <input type="text" class="form-control" formControlName="username" id="username" [style.color]="(!newUserForm) ? 'red' : 'black'">
+            <input type="text" class="form-control" formControlName="username" id="username" [style.color]="(!newUserForm) ? 'cornflowerblue' : 'black'">
             @if (form.controls['username'].invalid) {
                 <p [style.color]="'red'">El campo 'Usuario' es obligatorio.</p>
             }
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Correo del usuario</label>
-            <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="email" [style.color]="(!newUserForm) ? 'red' : 'black'">
+            <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="email" [style.color]="(!newUserForm) ? 'cornflowerblue' : 'black'">
             @if (form.controls['email'].invalid) {
                 <p [style.color]="'red'">El campo 'Correo del usuario' es obligatorio y debe tener formato de correo electrónico.</p>
             }
         </div>
         <div class="mb-3">
             <label class="form-label" for="image">Imagen del usuario</label>
-            <input type="text" class="form-control" formControlName="image" id="image" [style.color]="(!newUserForm) ? 'red' : 'black'">
+            <input type="text" class="form-control" formControlName="image" id="image" [style.color]="(!newUserForm) ? 'cornflowerblue' : 'black'">
             @if (form.controls['image'].invalid) {
                 <p [style.color]="'red'">El campo 'Imagen' es obligatorio.</p>
             }
