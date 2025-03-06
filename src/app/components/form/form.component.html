@@ -1,32 +1,39 @@
-@if (newUserForm) {
-    <h2>NUEVO USUARIO</h2>
-} @else {
-    <h2>ACTUALIZAR USUARIO</h2>
-}
-<form class="p-4">
-    <div class="mb-3">
-        <label for="name" class="form-label">Nombre del usuario</label>
-        <input type="text" class="form-control" id="name" style="color: red;" [value]="user.name">
-    </div>
-    <div class="mb-3">
-        <label for="lastName" class="form-label">Apellido del usuario</label>
-        <input type="text" class="form-control" id="lastName" [value]="user.lastName" style="color: red;">
-    </div>
-    <div class="mb-3">
-        <label for="username" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="username" style="color: red;" [value]="user.username">
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Correo del usuario</label>
-        <input type="email" class="form-control" id="email" aria-describedby="email" style="color: red;" [value]="user.email">
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="imgUrl">Imagen del usuario</label>
-        <input type="text" class="form-control" id="imgUrl" style="color: red;" [value]="user.url">
-    </div>
+<section class="position-relative">
     @if (newUserForm) {
-        <button type="submit" class="btn btn-light btn-outline-secondary">Guardar</button>
+        <h2>NUEVO USUARIO</h2>
     } @else {
-        <button type="submit" class="btn btn-light btn-outline-secondary">Actualizar</button>
+        <h2>ACTUALIZAR USUARIO</h2>
     }
-</form>
+    <form class="p-4" [formGroup]="form" (ngSubmit)="updateOrCreateUser(form.value)">
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre del usuario</label>
+            <input type="text" class="form-control" formControlName="first_name" id="first_name" [style.color]="(!newUserForm) ? 'red' : 'black'">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Apellido del usuario</label>
+            <input type="text" class="form-control" formControlName="last_name" id="last_name" [style.color]="(!newUserForm) ? 'red' : 'black'">
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" class="form-control" formControlName="username" id="username" [style.color]="(!newUserForm) ? 'red' : 'black'">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo del usuario</label>
+            <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="email" [style.color]="(!newUserForm) ? 'red' : 'black'">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Imagen del usuario</label>
+            <input type="text" class="form-control" formControlName="image" id="image" [style.color]="(!newUserForm) ? 'red' : 'black'">
+        </div>
+        @if (newUserForm) {
+            <button type="submit" class="btn btn-light btn-outline-secondary" [disabled]="form.invalid">Guardar</button>
+        } @else {
+            <button type="submit" class="btn btn-light btn-outline-secondary" [disabled]="form.invalid">Actualizar</button>
+        }
+    </form>
+    @if (isCreated) {
+        <app-users-management-notification [isCreated]="true"></app-users-management-notification>
+    } @else if (isUpdated) {
+        <app-users-management-notification [isUpdated]="true"></app-users-management-notification>
+    }
+</section>

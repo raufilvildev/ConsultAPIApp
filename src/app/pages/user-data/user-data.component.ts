@@ -2,27 +2,41 @@ import { Component, inject, Input } from '@angular/core';
 import { IUser } from '../../interfaces/iuser.interface';
 import { RouterLink, Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
+import { UsersManagementNotificationComponent } from '../../components/users-management-notification/users-management-notification.component';
 
 @Component({
   selector: 'app-user-data',
-  imports: [ RouterLink ],
+  imports: [ RouterLink, UsersManagementNotificationComponent ],
   templateUrl: './user-data.component.html',
   styleUrl: './user-data.component.css'
 })
 export class UserDataComponent {
   
-  users = inject(UsersService);
+  usersService = inject(UsersService);
   router = inject(Router);
   user!: IUser;
+  isDeleted: boolean = false;
 
-  @Input() id: string = '';
+  @Input() _id: string = '';
+
+  deleteUser(_id: string) {
+    this.usersService.deleteUserById(_id);
+    this.isDeleted = true;
+    setTimeout(() => this.isDeleted = false,1500);
+  }
 
   ngOnInit() {
-    const response = this.users.getUserById(Number(this.id));
-    if (!response) {
-      this.router.navigate(['/error']);
-    } else {
-      this.user = response;
-    }
+    this.usersService.getUserById(this._id).subscribe({
+      next: (response: IUser) => {
+        if ('error' in response) {
+          this.router.navigate(['/error']);
+        } else {
+          this.user = response;
+        }
+      },
+      error: (error: any) => {
+        this.router.navigate(['/error']);
+      }
+    })
   }
 }
